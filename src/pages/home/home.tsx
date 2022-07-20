@@ -1,4 +1,4 @@
-import { Header } from '../../components'
+import { Card, Header, NavbarFilter } from '../../components'
 import { Container } from './styles'
 
 const Home = () => {
@@ -9,6 +9,10 @@ const Home = () => {
         <h1>Personagens</h1>
         <p> Estes são todos os personagens do seriado rick and morty</p>
       </Header>
+      <NavbarFilter></NavbarFilter>
+      <main className="content">
+        <Card></Card>
+      </main>
     </Container>
   )
 }

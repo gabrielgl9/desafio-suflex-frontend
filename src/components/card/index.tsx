@@ -1,9 +1,19 @@
 import { CardStyled } from './style'
 
-const Card = () => {
+interface ICard {
+  title: string
+  image: string
+}
+
+const Card = ({ title, image }: ICard) => {
   return (
     <CardStyled>
-      <h1>Button</h1>
+      <div className="image-content">
+        <img src={image} alt={title} />
+      </div>
+      <div className="footer-content">
+        <a href="/">{title}</a>
+      </div>
     </CardStyled>
   )
 }

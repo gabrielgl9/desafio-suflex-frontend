@@ -9,9 +9,14 @@ export const HeaderStyled = styled.header`
   text-align: center;
   padding: 0.5rem;
 
-  h4,
   h1,
-  p {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span {
     margin: 0.5rem 0;
   }
 `;

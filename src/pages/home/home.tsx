@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Key, useEffect, useState } from 'react'
-import { Card, Header, NavbarFilter } from '../../components'
+import { Card, Container, Header, NavbarFilter } from '../../components'
 import { API_RICK_AND_MORTY } from '../../services'
 import { Content } from './styles'
 
@@ -20,7 +20,7 @@ const Home = () => {
         const charactersArray = characters.data.results
         setCharacters(allCharacters.concat(charactersArray))
       } catch (e) {
-        alert('não foi possível realizar a busca de personagens do seriado.')
+        alert('Não foi possível realizar a busca de personagens do seriado.')
       }
     }
 
@@ -28,11 +28,11 @@ const Home = () => {
   }, [])
 
   return (
-    <div>
+    <Container>
       <Header>
         <h4>Escolha seus</h4>
         <h1>Personagens</h1>
-        <p> Estes são todos os personagens do seriado rick and morty</p>
+        <p> Estes são todos os personagens do seriado Rick and Morty</p>
       </Header>
       <NavbarFilter></NavbarFilter>
       <Content>
@@ -47,7 +47,7 @@ const Home = () => {
             ),
           )}
       </Content>
-    </div>
+    </Container>
   )
 }
 

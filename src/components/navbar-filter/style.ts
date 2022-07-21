@@ -33,7 +33,6 @@ export const NavbarFilterStyled = styled.nav`
       display: flex;
       align-items: center;
       justify-content: space-between;
-      list-style: none;
       margin: 0;
 
       li {

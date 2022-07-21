@@ -6,3 +6,13 @@ export const Content = styled.main`
   gap: 20px;
   padding: 15px;
 `;
+
+export const MoreItems = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  button {
+    width: 25%;
+  }
+`;

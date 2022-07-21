@@ -12,7 +12,7 @@ export const NavbarFilterStyled = styled.nav`
 
   .filter-by-search {
     height: 100%;
-    width: 20%;
+    width: 30%;
     padding: 4px;
 
     input {
@@ -37,6 +37,11 @@ export const NavbarFilterStyled = styled.nav`
 
       li {
         padding: 0 0.5rem;
+        cursor: pointer;
+      }
+
+      .emphasisStyle {
+        font-weight: bold;
       }
     }
   }

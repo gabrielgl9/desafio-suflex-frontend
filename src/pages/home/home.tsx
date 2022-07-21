@@ -8,6 +8,7 @@ const Home = () => {
   const [allCharacters, setCharacters] = useState([])
   const [page, setPage] = useState(1)
   const [filter, setFilter] = useState('')
+  const [totalPages, setTotalPages] = useState(0)
 
   useEffect(() => {
     const fetchCharacters = async () => {
@@ -19,6 +20,8 @@ const Home = () => {
         if (!characters.data || !characters.data.results) {
           throw new Error()
         }
+
+        setTotalPages(characters.data.info.pages)
         const charactersArray = characters.data.results
 
         if (page === 1) {
@@ -60,13 +63,16 @@ const Home = () => {
             ),
           )}
       </Content>
-      <MoreItems>
-        <Button
-          type="button"
-          value="Ver mais"
-          clickButton={() => setPage(page + 1)}
-        />
-      </MoreItems>
+      {!!totalPages && (
+        <MoreItems>
+          <Button
+            type="button"
+            value="Ver mais"
+            disabled={totalPages === page}
+            clickButton={() => setPage(page + 1)}
+          />
+        </MoreItems>
+      )}
     </Container>
   )
 }

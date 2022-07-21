@@ -16,6 +16,7 @@ export const NavbarFilterStyled = styled.nav`
     padding: 4px;
 
     input {
+      width: 100%;
       height: 100%;
       border: 0;
       outline: none;
@@ -25,6 +26,12 @@ export const NavbarFilterStyled = styled.nav`
     input:focus {
       border-right: 1px solid #213547;
     }
+
+    @media only screen and (max-width: 600px) {
+      input {
+        width: 80%;
+      }
+    }
   }
 
   .filter-by-categories {
@@ -32,7 +39,7 @@ export const NavbarFilterStyled = styled.nav`
     ul {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: end;
       margin: 0;
 
       li {

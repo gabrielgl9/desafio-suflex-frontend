@@ -6,22 +6,36 @@ interface INavbarFilter {
 }
 
 const NavbarFilter = ({ handleFilter }: INavbarFilter) => {
-  const [emphasisTextState, setEmphasisTextState] = useState('all')
+  const [emphasisTextState, setEmphasisTextState] = useState('')
+  const [searchCharacterState, setSearchCharacterState] = useState('')
+
   const lis: any = {
-    all: 'Todos',
+    '': 'Todos',
     human: 'Humanos',
     alien: 'Aliens',
   }
 
   const handleSpecieFilter = (emphasisText: string) => {
+    const filterStateAux = `&species=${emphasisText}&name=${searchCharacterState}`
     setEmphasisTextState(emphasisText)
-    handleFilter(`&species=${emphasisText === 'all' ? '' : emphasisText}`)
+    handleFilter(filterStateAux)
+  }
+
+  const handleNameFilter = (name: string) => {
+    const filterStateAux = `&species=${emphasisTextState}&name=${name}`
+    setSearchCharacterState(name)
+    handleFilter(filterStateAux)
   }
 
   return (
     <NavbarFilterStyled>
       <div className="filter-by-search">
-        <input type="search" placeholder="Buscar" />
+        <input
+          type="search"
+          placeholder="Buscar"
+          value={searchCharacterState}
+          onChange={(event) => handleNameFilter(event?.target.value)}
+        />
       </div>
       <div className="filter-by-categories">
         <ul>

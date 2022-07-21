@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Textfield from '../textfield'
 import { NavbarFilterStyled } from './style'
 
 interface INavbarFilter {
@@ -30,11 +31,12 @@ const NavbarFilter = ({ handleFilter }: INavbarFilter) => {
   return (
     <NavbarFilterStyled>
       <div className="filter-by-search">
-        <input
+        <Textfield
           type="search"
+          name="buscar personagem"
           placeholder="Buscar"
           value={searchCharacterState}
-          onChange={(event) => handleNameFilter(event?.target.value)}
+          handleChange={(event) => handleNameFilter(event?.target.value)}
         />
       </div>
       <div className="filter-by-categories">

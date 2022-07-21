@@ -11,25 +11,11 @@ export const NavbarFilterStyled = styled.nav`
   margin: 15px;
 
   .filter-by-search {
-    height: 100%;
     width: 30%;
-    padding: 4px;
-
-    input {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      outline: none;
-      padding: 0 10px;
-    }
-
-    input:focus {
-      border-right: 1px solid #213547;
-    }
 
     @media only screen and (max-width: 600px) {
       input {
-        width: 80%;
+        width: 85% !important;
       }
     }
   }

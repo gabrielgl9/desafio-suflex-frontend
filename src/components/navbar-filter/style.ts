@@ -21,21 +21,7 @@ export const NavbarFilterStyled = styled.nav`
   }
 
   .filter-by-categories {
-    width: 60%;
-    ul {
-      display: flex;
-      align-items: center;
-      justify-content: end;
-      margin: 0;
-
-      li {
-        padding: 0 0.5rem;
-        cursor: pointer;
-      }
-
-      .emphasisStyle {
-        font-weight: bold;
-      }
-    }
+    width: 70%;
+    padding-right: 0.5rem;
   }
 `;

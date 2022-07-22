@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import List from '../list'
 import Textfield from '../textfield'
 import { NavbarFilterStyled } from './style'
 
@@ -40,18 +41,11 @@ const NavbarFilter = ({ handleFilter }: INavbarFilter) => {
         />
       </div>
       <div className="filter-by-categories">
-        <ul>
-          {lis &&
-            Object.keys(lis).map((li: string, index: number) => (
-              <li
-                className={li === emphasisTextState ? 'emphasisStyle' : ''}
-                key={index}
-                onClick={() => handleSpecieFilter(li)}
-              >
-                {lis[li]}
-              </li>
-            ))}
-        </ul>
+        <List
+          lis={lis}
+          emphasysText={emphasisTextState}
+          linkFilter={handleSpecieFilter}
+        />
       </div>
     </NavbarFilterStyled>
   )

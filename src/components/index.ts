@@ -6,4 +6,5 @@ export { default as Header } from "./header";
 export { default as List } from "./list";
 export { default as Menu } from "./menu";
 export { default as NavbarFilter } from "./navbar-filter";
+export { default as NoResultsFound } from "./no-results-found";
 export { default as Textfield } from "./textfield";

@@ -7,12 +7,13 @@ import {
   Header,
   Menu,
   NavbarFilter,
+  NoResultsFound,
 } from '../../components'
 import { API_RICK_AND_MORTY } from '../../services'
 import { Content, MoreItems } from './styles'
 
 const Home = () => {
-  const [allCharacters, setCharacters] = useState([])
+  const [allCharacters, setAllCharacters] = useState([])
   const [page, setPage] = useState(1)
   const [filter, setFilter] = useState('')
   const [totalPages, setTotalPages] = useState(0)
@@ -32,13 +33,13 @@ const Home = () => {
         const charactersArray = characters.data.results
 
         if (page === 1) {
-          setCharacters(charactersArray)
+          setAllCharacters(charactersArray)
           return
         }
 
-        setCharacters(allCharacters.concat(charactersArray))
+        setAllCharacters(allCharacters.concat(charactersArray))
       } catch (e) {
-        alert('Não foi possível realizar a busca de personagens do seriado.')
+        setAllCharacters([])
       }
     }
 
@@ -76,6 +77,12 @@ const Home = () => {
               ),
             )}
         </Content>
+        {!allCharacters.length && (
+          <NoResultsFound
+            title="Nenhum personagem foi encontrado"
+            subtitle="Não foi possível realizar a busca dos dados para o filtro informado"
+          />
+        )}
         {totalPages > 1 && (
           <MoreItems>
             <Button

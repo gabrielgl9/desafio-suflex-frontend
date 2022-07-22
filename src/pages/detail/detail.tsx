@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Container, Header } from '../../components'
+import { Container, Header, Menu } from '../../components'
 import { API_RICK_AND_MORTY } from '../../services'
 import { Content } from './styles'
 
@@ -41,28 +41,31 @@ const Detail = () => {
   }, [])
 
   return (
-    <Container>
-      <Header>
-        <h4>Detalhes do</h4>
-        <h1>Personagem</h1>
-        <p> Estes são todos os dados do personagem informado</p>
-      </Header>
-      <Content>
-        {character && (
-          <>
-            <div className="image">
-              <img src={character.image} alt="" />
-            </div>
-            <div className="content">
-              <h3>{character.name}</h3>
-              <p>{character.status}</p>
-              <p>Apareceu em {character.episodesQtd} episódios</p>
-              <p>Desde {character.createdAt}</p>
-            </div>
-          </>
-        )}
-      </Content>
-    </Container>
+    <>
+      <Menu></Menu>
+      <Container>
+        <Header>
+          <h4>Detalhes do</h4>
+          <h1>Personagem</h1>
+          <p> Estes são todos os dados do personagem informado</p>
+        </Header>
+        <Content>
+          {character && (
+            <>
+              <div className="image">
+                <img src={character.image} alt="" />
+              </div>
+              <div className="content">
+                <h3>{character.name}</h3>
+                <p>{character.status}</p>
+                <p>Apareceu em {character.episodesQtd} episódios</p>
+                <p>Desde {character.createdAt}</p>
+              </div>
+            </>
+          )}
+        </Content>
+      </Container>
+    </>
   )
 }
 

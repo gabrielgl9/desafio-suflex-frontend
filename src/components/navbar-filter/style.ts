@@ -8,7 +8,7 @@ export const NavbarFilterStyled = styled.nav`
   height: 50px;
   border: 1px solid #213547;
   border-radius: 7px;
-  margin: 15px;
+  margin: 1rem;
 
   .filter-by-search {
     width: 30%;

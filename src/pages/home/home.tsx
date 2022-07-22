@@ -1,6 +1,13 @@
 import axios from 'axios'
 import { Key, useEffect, useState } from 'react'
-import { Button, Card, Container, Header, NavbarFilter } from '../../components'
+import {
+  Button,
+  Card,
+  Container,
+  Header,
+  Menu,
+  NavbarFilter,
+} from '../../components'
 import { API_RICK_AND_MORTY } from '../../services'
 import { Content, MoreItems } from './styles'
 
@@ -44,40 +51,43 @@ const Home = () => {
   }
 
   return (
-    <Container>
-      <Header>
-        <h4>Escolha seus</h4>
-        <h1>Personagens</h1>
-        <p> Estes são todos os personagens do seriado Rick and Morty</p>
-      </Header>
-      <NavbarFilter handleFilter={handleFilter} />
-      <Content>
-        {allCharacters &&
-          allCharacters.map(
-            (
-              character: { id: number; name: string; image: string },
-              key: Key,
-            ) => (
-              <Card
-                key={key}
-                link={`/detail/${character.id}`}
-                title={character.name}
-                image={character.image}
-              ></Card>
-            ),
-          )}
-      </Content>
-      {totalPages > 1 && (
-        <MoreItems>
-          <Button
-            type="button"
-            value="Ver mais"
-            disabled={totalPages === page}
-            clickButton={() => setPage(page + 1)}
-          />
-        </MoreItems>
-      )}
-    </Container>
+    <>
+      <Menu></Menu>
+      <Container>
+        <Header>
+          <h4>Escolha seus</h4>
+          <h1>Personagens</h1>
+          <p> Estes são todos os personagens do seriado Rick and Morty</p>
+        </Header>
+        <NavbarFilter handleFilter={handleFilter} />
+        <Content>
+          {allCharacters &&
+            allCharacters.map(
+              (
+                character: { id: number; name: string; image: string },
+                key: Key,
+              ) => (
+                <Card
+                  key={key}
+                  link={`/detail/${character.id}`}
+                  title={character.name}
+                  image={character.image}
+                ></Card>
+              ),
+            )}
+        </Content>
+        {totalPages > 1 && (
+          <MoreItems>
+            <Button
+              type="button"
+              value="Ver mais"
+              disabled={totalPages === page}
+              clickButton={() => setPage(page + 1)}
+            />
+          </MoreItems>
+        )}
+      </Container>
+    </>
   )
 }
 

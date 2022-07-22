@@ -6,7 +6,7 @@ const Menu = () => {
   const navigate = useNavigate()
 
   const lis = [
-    'Home',
+    '<span><a href="/"> Home </a></span>',
     '<span><a href="/register"> Cadastre-se </a></span>' +
       '<span><a href="/login"> Login </a></span>',
   ]

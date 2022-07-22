@@ -5,12 +5,15 @@ import { MenuStyled } from './style'
 const Menu = () => {
   const navigate = useNavigate()
 
-  const lis = ['Home', '<span> Cadastre-se </span>' + '<span> Login </span>']
-  const links = ['/', '/register', '/login']
+  const lis = [
+    'Home',
+    '<span><a href="/register"> Cadastre-se </a></span>' +
+      '<span><a href="/login"> Login </a></span>',
+  ]
 
   return (
     <MenuStyled>
-      <List lis={lis} linkFilter={(url) => navigate(url)} links={links}></List>
+      <List lis={lis} linkFilter={(url) => navigate(url)}></List>
     </MenuStyled>
   )
 }

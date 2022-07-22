@@ -6,6 +6,7 @@ export const ListStyled = styled.div`
     align-items: center;
     justify-content: end;
     margin: 0;
+    padding: 0;
 
     li {
       padding: 0 0.5rem;

@@ -1,24 +1,16 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import List from '../list'
 import { MenuStyled } from './style'
 
 const Menu = () => {
+  const navigate = useNavigate()
+
+  const lis = ['Home', '<span> Cadastre-se </span>' + '<span> Login </span>']
+  const links = ['/home', '/register', '/login']
+
   return (
     <MenuStyled>
-      <ul>
-        <li>
-          <Link to={'/'}>
-            <span> Home </span>
-          </Link>
-        </li>
-        <li>
-          <Link to={'/login'}>
-            <span> Login </span>
-          </Link>
-          <Link to={'/register'}>
-            <span> Cadastre-se </span>
-          </Link>
-        </li>
-      </ul>
+      <List lis={lis} linkFilter={(url) => navigate(url)} links={links}></List>
     </MenuStyled>
   )
 }

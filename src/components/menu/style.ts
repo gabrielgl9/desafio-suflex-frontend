@@ -8,12 +8,8 @@ export const MenuStyled = styled.nav`
   background: #213547;
   color: #fff;
   ul {
-    display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin: 1rem;
-    padding: 0;
-
+    padding: 1rem;
     li span:last-child {
       padding-left: 0.5rem;
     }

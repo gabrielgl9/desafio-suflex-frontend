@@ -5,7 +5,7 @@ export const Content = styled.main`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 15px;
-  margin-top: 20px;
+  margin: 20px 0 36px;
   color: #fff;
   background: #213547;
   .content h3 {

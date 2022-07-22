@@ -6,7 +6,7 @@ const Menu = () => {
   const navigate = useNavigate()
 
   const lis = ['Home', '<span> Cadastre-se </span>' + '<span> Login </span>']
-  const links = ['/home', '/register', '/login']
+  const links = ['/', '/register', '/login']
 
   return (
     <MenuStyled>

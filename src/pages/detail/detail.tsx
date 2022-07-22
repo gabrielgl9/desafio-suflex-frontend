@@ -58,7 +58,12 @@ const Detail = () => {
               <div className="content">
                 <h3>{character.name}</h3>
                 <p>{character.status}</p>
-                <p>Apareceu em {character.episodesQtd} episódios</p>
+                <p>
+                  Apareceu em {character.episodesQtd}
+                  {character.episodesQtd && character.episodesQtd > 1
+                    ? ' episódios'
+                    : ' episódio'}
+                </p>
                 <p>Desde {character.createdAt}</p>
               </div>
             </>

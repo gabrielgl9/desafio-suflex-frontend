@@ -22,7 +22,7 @@ const List = ({ lis, emphasysText = '', linkFilter }: IList) => {
   )
 
   return (
-    <ListStyled>
+    <ListStyled cursorOnlyInAHref={Array.isArray(lis)}>
       <ul>{list}</ul>
     </ListStyled>
   )

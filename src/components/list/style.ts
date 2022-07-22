@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ListStyled = styled.div`
+export const ListStyled = styled.div<{ cursorOnlyInAHref: boolean }>`
   ul {
     display: flex;
     align-items: center;
@@ -10,7 +10,7 @@ export const ListStyled = styled.div`
 
     li {
       padding: 0 0.5rem;
-      cursor: pointer;
+      cursor: ${(props) => (props.cursorOnlyInAHref ? "auto" : "pointer")};
     }
 
     .emphasisStyle {

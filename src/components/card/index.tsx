@@ -1,20 +1,24 @@
+import { Link } from 'react-router-dom'
 import { CardStyled } from './style'
 
 interface ICard {
   title: string
   image: string
+  link: string
 }
 
-const Card = ({ title, image }: ICard) => {
+const Card = ({ title, image, link }: ICard) => {
   return (
-    <CardStyled>
-      <div className="image-content">
-        <img src={image} alt={title} />
-      </div>
-      <div className="footer-content">
-        <a href="/">{title}</a>
-      </div>
-    </CardStyled>
+    <Link to={link}>
+      <CardStyled>
+        <div className="image-content">
+          <img src={image} alt={title} />
+        </div>
+        <div className="footer-content">
+          <span>{title}</span>
+        </div>
+      </CardStyled>
+    </Link>
   )
 }
 

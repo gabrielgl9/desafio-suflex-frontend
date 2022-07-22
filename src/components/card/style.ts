@@ -31,7 +31,7 @@ export const CardStyled = styled.div`
     background: #213547;
     padding: 0.5rem 0;
     width: 100%;
-    a {
+    span {
       font-size: 14px;
       font-style: italic;
       text-transform: uppercase;

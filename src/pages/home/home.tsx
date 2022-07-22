@@ -54,9 +54,13 @@ const Home = () => {
       <Content>
         {allCharacters &&
           allCharacters.map(
-            (character: { name: string; image: string }, key: Key) => (
+            (
+              character: { id: number; name: string; image: string },
+              key: Key,
+            ) => (
               <Card
                 key={key}
+                link={`/detail/${character.id}`}
                 title={character.name}
                 image={character.image}
               ></Card>

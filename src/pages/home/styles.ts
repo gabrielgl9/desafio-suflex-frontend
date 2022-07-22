@@ -12,6 +12,8 @@ export const MoreItems = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin: 15px;
+  padding-bottom: 15px;
   button {
     width: 25%;
   }

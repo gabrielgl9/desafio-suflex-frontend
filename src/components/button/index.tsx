@@ -5,10 +5,15 @@ interface IButton {
   type: 'submit' | 'reset' | 'button' | undefined
   value: string
   disabled?: boolean
-  clickButton: () => void
+  clickButton?: () => void
 }
 
-const Button = ({ type, value, disabled = false, clickButton }: IButton) => {
+const Button = ({
+  type,
+  value,
+  disabled = false,
+  clickButton = undefined,
+}: IButton) => {
   return (
     <ButtonStyled>
       <button type={type} onClick={clickButton} disabled={disabled}>

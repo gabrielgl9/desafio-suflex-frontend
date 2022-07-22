@@ -4,8 +4,6 @@ export const ButtonStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 15px;
-  padding-bottom: 15px;
   width: 100%;
 
   button {
@@ -15,7 +13,7 @@ export const ButtonStyled = styled.div`
     line-height: 24px;
     border: 1px solid #213547;
     border-radius: 4px;
-    padding: 10px;
+    padding: 10px 25px;
     cursor: pointer;
   }
 

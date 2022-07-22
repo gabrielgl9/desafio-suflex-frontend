@@ -42,7 +42,7 @@ const ObjectListComponent = ({ lis, emphasysText = '', linkFilter }: IList) => (
   <>
     {Object.keys(lis).map((li: string, index: number) => (
       <li
-        className={li === emphasysText && emphasysText ? 'emphasisStyle' : ''}
+        className={li === emphasysText ? 'emphasisStyle' : ''}
         key={index}
         onClick={() => linkFilter(li)}
       >

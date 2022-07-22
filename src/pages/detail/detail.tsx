@@ -9,6 +9,7 @@ interface ICharacterDetail {
   name: string
   image: string
   status: string
+  species: string
   episodesQtd: number
   createdAt: string
 }
@@ -31,6 +32,7 @@ const Detail = () => {
           characterInfo.data.created,
         ).toLocaleDateString()
 
+        console.log(characterInfo)
         setCharacterState(characterInfo.data)
       } catch (e) {
         alert('Não foi possível realizar a busca do personagem.')
@@ -58,6 +60,7 @@ const Detail = () => {
               <div className="content">
                 <h3>{character.name}</h3>
                 <p>{character.status}</p>
+                <p>{character.species}</p>
                 <p>
                   Apareceu em {character.episodesQtd}
                   {character.episodesQtd && character.episodesQtd > 1

@@ -67,7 +67,7 @@ const Home = () => {
             ),
           )}
       </Content>
-      {!!totalPages && (
+      {totalPages > 1 && (
         <MoreItems>
           <Button
             type="button"

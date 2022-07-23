@@ -82,7 +82,7 @@ const FavoriteCharactersPage = () => {
             favoriteCharacters.map((character: FavoriteCharacter, key: Key) => (
               <Card
                 key={key}
-                link={`/detail/${character.id}`}
+                link={`/detail/${character.id_api}`}
                 title={character.name}
                 image={character.image}
                 checkedStar={true}

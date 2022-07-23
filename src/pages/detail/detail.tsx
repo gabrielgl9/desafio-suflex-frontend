@@ -5,6 +5,7 @@ import { Location, Origin } from '../../@interfaces/IFavoriteCharacter'
 import { Button, Container, Header, Menu } from '../../components'
 import { API_LOCAL, API_RICK_AND_MORTY } from '../../services'
 import api from '../../services/api'
+import { getToken, isAuthenticated } from '../../services/auth'
 import { Content } from './styles'
 
 interface ICharacterDetail {
@@ -53,6 +54,7 @@ const Detail = () => {
 
     const fetchFavoriteCharacters = async () => {
       try {
+        if (!getToken()) return new Error()
         const characters = await api.get(`${API_LOCAL}/favorite-character`)
 
         if (!characters.data || !characters.data.favoriteCharacters) {
@@ -128,18 +130,20 @@ const Detail = () => {
                     : ' episódio'}
                 </p>
                 <p>Desde {character.createdAt}</p>
-                <Button
-                  type="button"
-                  value={
-                    favoriteCharacters.find(
-                      (favoriteCharacter: { id_api: number }) =>
-                        favoriteCharacter.id_api === character.id,
-                    )
-                      ? 'Desfavoritar Personagem'
-                      : 'Favoritar Personagem'
-                  }
-                  clickButton={handleFavoriteCharacter}
-                />
+                {isAuthenticated() && (
+                  <Button
+                    type="button"
+                    value={
+                      favoriteCharacters.find(
+                        (favoriteCharacter: { id_api: number }) =>
+                          favoriteCharacter.id_api === character.id,
+                      )
+                        ? 'Desfavoritar Personagem'
+                        : 'Favoritar Personagem'
+                    }
+                    clickButton={handleFavoriteCharacter}
+                  />
+                )}
               </div>
             </>
           )}

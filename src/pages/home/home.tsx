@@ -12,6 +12,7 @@ import {
 } from '../../components'
 import { API_LOCAL, API_RICK_AND_MORTY } from '../../services'
 import api from '../../services/api'
+import { getToken } from '../../services/auth'
 import { Content, MoreItems } from './styles'
 
 const Home = () => {
@@ -53,6 +54,8 @@ const Home = () => {
   useEffect(() => {
     const fetchFavoriteCharacters = async () => {
       try {
+        if (!getToken()) return new Error()
+
         const characters = await api.get(`${API_LOCAL}/favorite-character`)
 
         if (!characters.data || !characters.data.favoriteCharacters) {

@@ -1,10 +1,7 @@
 import axios from "axios";
-import { API_LOCAL } from "./../services";
 import { getToken } from "./auth";
 
-const api = axios.create({
-  baseURL: API_LOCAL,
-});
+const api = axios.create();
 
 api.interceptors.request.use(async (config: any) => {
   const token = getToken();

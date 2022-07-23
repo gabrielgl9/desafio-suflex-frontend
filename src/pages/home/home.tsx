@@ -53,8 +53,6 @@ const Home = () => {
       try {
         const characters = await api.get(`${API_LOCAL}/favorite-character`)
 
-        console.log(characters)
-
         if (!characters.data || !characters.data.favoriteCharacters) {
           throw new Error()
         }

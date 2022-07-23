@@ -8,6 +8,11 @@ export const Content = styled.main`
   margin: 20px 0 36px;
   color: #fff;
   background: #213547;
+
+  .content div {
+    justify-content: initial;
+  }
+
   .content h3 {
     margin-top: 0;
   }

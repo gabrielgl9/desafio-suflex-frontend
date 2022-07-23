@@ -1,6 +1,6 @@
 import { Key, useEffect, useState } from 'react'
 import { FavoriteCharacter } from '../../@interfaces/IFavoriteCharacter'
-import { Card, Container, Header, Menu } from '../../components'
+import { Card, Container, Header, Menu, NoResultsFound } from '../../components'
 import { API_LOCAL } from '../../services'
 import api from '../../services/api'
 import { Content } from './styles'
@@ -64,11 +64,19 @@ const FavoriteCharactersPage = () => {
     <>
       <Menu></Menu>
       <Container>
-        <Header>
-          <h4>Estes são seus</h4>
-          <h1>Personagens</h1>
-          <p> favoritos do seriado Rick and Morty</p>
-        </Header>
+        {favoriteCharacters && favoriteCharacters.length ? (
+          <Header>
+            <h4>Estes são seus</h4>
+            <h1>Personagens</h1>
+            <p> favoritos do seriado Rick and Morty</p>
+          </Header>
+        ) : (
+          <NoResultsFound
+            title="Nenhum personagem foi encontrado"
+            subtitle="Parece que você não favoritou nenhum personagem"
+          />
+        )}
+
         <Content>
           {favoriteCharacters &&
             favoriteCharacters.map((character: FavoriteCharacter, key: Key) => (

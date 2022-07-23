@@ -9,17 +9,19 @@ import {
   NavbarFilter,
   NoResultsFound,
 } from '../../components'
-import { API_RICK_AND_MORTY } from '../../services'
+import { API_LOCAL, API_RICK_AND_MORTY } from '../../services'
+import api from '../../services/api'
 import { Content, MoreItems } from './styles'
 
 const Home = () => {
   const [allCharacters, setAllCharacters] = useState([])
+  const [favoriteCharacters, setFavoriteCharacters] = useState([])
   const [page, setPage] = useState(1)
   const [filter, setFilter] = useState('')
   const [totalPages, setTotalPages] = useState(0)
 
   useEffect(() => {
-    const fetchCharacters = async () => {
+    const fetchAllCharacters = async () => {
       try {
         const characters = await axios.get(
           `${API_RICK_AND_MORTY}/character/?page=${page}${filter}`,
@@ -43,8 +45,28 @@ const Home = () => {
       }
     }
 
-    fetchCharacters()
+    fetchAllCharacters()
   }, [page, filter])
+
+  useEffect(() => {
+    const fetchFavoriteCharacters = async () => {
+      try {
+        const characters = await api.get(`${API_LOCAL}/favorite-character`)
+
+        console.log(characters)
+
+        if (!characters.data || !characters.data.favoriteCharacters) {
+          throw new Error()
+        }
+
+        setFavoriteCharacters(characters.data.favoriteCharacters)
+      } catch (e) {
+        setFavoriteCharacters([])
+      }
+    }
+
+    fetchFavoriteCharacters()
+  }, [])
 
   const handleFilter = (strFilter: string) => {
     setPage(1)
@@ -73,6 +95,13 @@ const Home = () => {
                   link={`/detail/${character.id}`}
                   title={character.name}
                   image={character.image}
+                  checkedStar={
+                    favoriteCharacters &&
+                    favoriteCharacters.find(
+                      (favoriteCharacter: { id_api: number }) =>
+                        character.id === favoriteCharacter.id_api,
+                    )!
+                  }
                 ></Card>
               ),
             )}

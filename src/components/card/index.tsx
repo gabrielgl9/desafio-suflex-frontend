@@ -1,13 +1,16 @@
+import { FaStar } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { isAuthenticated } from '../../services/auth'
 import { CardStyled } from './style'
 
 interface ICard {
   title: string
   image: string
   link: string
+  checkedStar: boolean
 }
 
-const Card = ({ title, image, link }: ICard) => {
+const Card = ({ title, image, link, checkedStar = false }: ICard) => {
   return (
     <Link to={link}>
       <CardStyled>
@@ -16,6 +19,11 @@ const Card = ({ title, image, link }: ICard) => {
         </div>
         <div className="footer-content">
           <span>{title}</span>
+          {isAuthenticated() && (
+            <div className={checkedStar ? 'star checkedStar' : 'star'}>
+              <FaStar></FaStar>
+            </div>
+          )}
         </div>
       </CardStyled>
     </Link>

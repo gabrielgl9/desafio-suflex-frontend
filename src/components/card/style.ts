@@ -28,6 +28,10 @@ export const CardStyled = styled.div`
   }
 
   .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     background: #213547;
     padding: 0.5rem 0;
     width: 100%;
@@ -37,6 +41,16 @@ export const CardStyled = styled.div`
       text-transform: uppercase;
       color: #fff;
       padding-left: 1.2rem;
+    }
+
+    .star {
+      padding-right: 1.2rem;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    .checkedStar {
+      color: #f1f15c;
     }
   }
 `;

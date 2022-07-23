@@ -1,11 +1,9 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Location, Origin } from '../../@interfaces/IFavoriteCharacter'
-import { Button, Container, Header, Menu } from '../../components'
-import { API_LOCAL, API_RICK_AND_MORTY } from '../../services'
-import api from '../../services/api'
-import { getToken, isAuthenticated } from '../../services/auth'
+import { Container, Header, Menu } from '../../components'
+import { API_RICK_AND_MORTY } from '../../services'
 import { Content } from './styles'
 
 interface ICharacterDetail {
@@ -27,8 +25,6 @@ interface ICharacterDetail {
 
 const Detail = () => {
   const [character, setCharacterState] = useState<ICharacterDetail>()
-  const [favoriteCharacters, setFavoriteCharacters] = useState([])
-  const navigate = useNavigate()
 
   const params = useParams()
 
@@ -52,57 +48,8 @@ const Detail = () => {
       }
     }
 
-    const fetchFavoriteCharacters = async () => {
-      try {
-        if (!getToken()) return new Error()
-        const characters = await api.get(`${API_LOCAL}/favorite-character`)
-
-        if (!characters.data || !characters.data.favoriteCharacters) {
-          throw new Error()
-        }
-
-        setFavoriteCharacters(characters.data.favoriteCharacters)
-      } catch (e) {
-        setFavoriteCharacters([])
-      }
-    }
-
     fetchCharacterData()
-    fetchFavoriteCharacters()
   }, [])
-
-  const handleFavoriteCharacter = async () => {
-    try {
-      const favoriteCharacterSavedOrRemoved = await api.post(
-        `${API_LOCAL}/favorite-character`,
-        {
-          id_api: character?.id,
-          name: character?.name,
-          status: character?.status,
-          species: character?.species,
-          type: character?.type,
-          gender: character?.gender,
-          origin: character?.origin,
-          location: character?.location,
-          image: character?.image,
-          episode: character?.episode,
-          url: character?.url,
-          created: character?.created,
-        },
-      )
-
-      if (
-        !favoriteCharacterSavedOrRemoved.data ||
-        !favoriteCharacterSavedOrRemoved.data.result
-      ) {
-        throw new Error()
-      }
-
-      navigate('/favorite-characters')
-    } catch (e) {
-      alert('Não foi possível favoritar ou desfavoritar o personagem')
-    }
-  }
 
   return (
     <>
@@ -130,20 +77,6 @@ const Detail = () => {
                     : ' episódio'}
                 </p>
                 <p>Desde {character.createdAt}</p>
-                {isAuthenticated() && (
-                  <Button
-                    type="button"
-                    value={
-                      favoriteCharacters.find(
-                        (favoriteCharacter: { id_api: number }) =>
-                          favoriteCharacter.id_api === character.id,
-                      )
-                        ? 'Desfavoritar Personagem'
-                        : 'Favoritar Personagem'
-                    }
-                    clickButton={handleFavoriteCharacter}
-                  />
-                )}
               </div>
             </>
           )}

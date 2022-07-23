@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { FaStar } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { isAuthenticated } from '../../services/auth'
 import { CardStyled } from './style'
 
@@ -8,25 +9,38 @@ interface ICard {
   image: string
   link: string
   checkedStar: boolean
+  handleClick?: () => void
 }
 
-const Card = ({ title, image, link, checkedStar = false }: ICard) => {
+const Card = ({
+  title,
+  image,
+  link,
+  checkedStar = false,
+  handleClick = () => {},
+}: ICard) => {
+  const navigate = useNavigate()
+  const redirect = () => {
+    navigate(link)
+  }
+
   return (
-    <Link to={link}>
-      <CardStyled>
-        <div className="image-content">
-          <img src={image} alt={title} />
-        </div>
-        <div className="footer-content">
-          <span>{title}</span>
-          {isAuthenticated() && (
-            <div className={checkedStar ? 'star checkedStar' : 'star'}>
-              <FaStar></FaStar>
-            </div>
-          )}
-        </div>
-      </CardStyled>
-    </Link>
+    <CardStyled>
+      <div className="image-content" onClick={redirect}>
+        <img src={image} alt={title} />
+      </div>
+      <div className="footer-content">
+        <span onClick={redirect}>{title}</span>
+        {isAuthenticated() && (
+          <div
+            onClick={handleClick}
+            className={checkedStar ? 'star checkedStar' : 'star'}
+          >
+            <FaStar></FaStar>
+          </div>
+        )}
+      </div>
+    </CardStyled>
   )
 }
 

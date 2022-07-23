@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Key, useEffect, useState } from 'react'
+import { FavoriteCharacter } from '../../@interfaces/IFavoriteCharacter'
 import {
   Button,
   Card,
@@ -19,6 +20,7 @@ const Home = () => {
   const [page, setPage] = useState(1)
   const [filter, setFilter] = useState('')
   const [totalPages, setTotalPages] = useState(0)
+  const [favoriteCharacterState, setFavoriteCharacterState] = useState(false)
 
   useEffect(() => {
     const fetchAllCharacters = async () => {
@@ -64,11 +66,44 @@ const Home = () => {
     }
 
     fetchFavoriteCharacters()
-  }, [])
+  }, [favoriteCharacterState])
 
   const handleFilter = (strFilter: string) => {
     setPage(1)
     setFilter(strFilter)
+  }
+
+  const setFavoriteCharacter = async (character: FavoriteCharacter) => {
+    try {
+      const favoriteCharacterSavedOrRemoved = await api.post(
+        `${API_LOCAL}/favorite-character`,
+        {
+          id_api: character?.id,
+          name: character?.name,
+          status: character?.status,
+          species: character?.species,
+          type: character?.type,
+          gender: character?.gender,
+          origin: character?.origin,
+          location: character?.location,
+          image: character?.image,
+          episode: character?.episode,
+          url: character?.url,
+          created: character?.created,
+        },
+      )
+
+      if (
+        !favoriteCharacterSavedOrRemoved.data ||
+        !favoriteCharacterSavedOrRemoved.data.result
+      ) {
+        throw new Error()
+      }
+
+      setFavoriteCharacterState(!favoriteCharacterState) // force use effect
+    } catch (e) {
+      alert('Não foi possível favoritar ou desfavoritar o personagem')
+    }
   }
 
   return (
@@ -83,26 +118,22 @@ const Home = () => {
         <NavbarFilter handleFilter={handleFilter} />
         <Content>
           {allCharacters &&
-            allCharacters.map(
-              (
-                character: { id: number; name: string; image: string },
-                key: Key,
-              ) => (
-                <Card
-                  key={key}
-                  link={`/detail/${character.id}`}
-                  title={character.name}
-                  image={character.image}
-                  checkedStar={
-                    favoriteCharacters &&
-                    favoriteCharacters.find(
-                      (favoriteCharacter: { id_api: number }) =>
-                        character.id === favoriteCharacter.id_api,
-                    )!
-                  }
-                ></Card>
-              ),
-            )}
+            allCharacters.map((character: FavoriteCharacter, key: Key) => (
+              <Card
+                key={key}
+                link={`/detail/${character.id}`}
+                title={character.name}
+                image={character.image}
+                checkedStar={
+                  favoriteCharacters &&
+                  favoriteCharacters.find(
+                    (favoriteCharacter: { id_api: number }) =>
+                      character.id === favoriteCharacter.id_api,
+                  )!
+                }
+                handleClick={() => setFavoriteCharacter(character)}
+              ></Card>
+            ))}
         </Content>
         {!allCharacters.length && (
           <NoResultsFound

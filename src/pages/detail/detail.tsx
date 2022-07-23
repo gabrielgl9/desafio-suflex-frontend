@@ -89,7 +89,6 @@ const Detail = () => {
         },
       )
 
-      console.log(favoriteCharacterSavedOrRemoved)
       if (
         !favoriteCharacterSavedOrRemoved.data ||
         !favoriteCharacterSavedOrRemoved.data.result
@@ -99,7 +98,7 @@ const Detail = () => {
 
       navigate('/favorite-characters')
     } catch (e) {
-      alert('Não foi possível desfavoritar o personagem')
+      alert('Não foi possível favoritar ou desfavoritar o personagem')
     }
   }
 

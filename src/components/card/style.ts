@@ -10,7 +10,6 @@ export const CardStyled = styled.div`
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  cursor: pointer;
 
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -20,6 +19,7 @@ export const CardStyled = styled.div`
     display: flex;
     width: 100%;
     height: 200px;
+    cursor: pointer;
 
     img {
       width: 100%;
@@ -41,12 +41,14 @@ export const CardStyled = styled.div`
       text-transform: uppercase;
       color: #fff;
       padding-left: 1.2rem;
+      cursor: pointer;
     }
 
     .star {
       padding-right: 1.2rem;
       font-size: 24px;
       color: #fff;
+      cursor: pointer;
     }
 
     .checkedStar {

@@ -25,22 +25,24 @@ const Card = ({
   }
 
   return (
-    <CardStyled>
-      <div className="image-content" onClick={redirect}>
-        <img src={image} alt={title} />
-      </div>
-      <div className="footer-content">
-        <span onClick={redirect}>{title}</span>
-        {isAuthenticated() && (
-          <div
-            onClick={handleClick}
-            className={checkedStar ? 'star checkedStar' : 'star'}
-          >
-            <FaStar></FaStar>
-          </div>
-        )}
-      </div>
-    </CardStyled>
+    <div>
+      <CardStyled>
+        <div className="image-content" onClick={redirect}>
+          <img src={image} alt={title} />
+        </div>
+        <div className="footer-content">
+          <span onClick={redirect}>{title}</span>
+          {isAuthenticated() && (
+            <div
+              onClick={handleClick}
+              className={checkedStar ? 'star checkedStar' : 'star'}
+            >
+              <FaStar></FaStar>
+            </div>
+          )}
+        </div>
+      </CardStyled>
+    </div>
   )
 }
 

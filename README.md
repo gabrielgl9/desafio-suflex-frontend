@@ -6,5 +6,7 @@
 - npm install
 - npm run dev
 
-**CERTIFIQUE QUE O BACKEND ESTEJA RODANDO**
+## Certifique que:
 
+- Você tenha o Node instalado (minha versão: v16.15.1)
+- **Backend esteja rodando:** [Backend Github](https://github.com/gabrielgl9/desafio-suflex-backend)

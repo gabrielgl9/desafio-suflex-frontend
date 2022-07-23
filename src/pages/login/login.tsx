@@ -1,4 +1,6 @@
+import axios from 'axios'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Button,
   Container,
@@ -7,14 +9,27 @@ import {
   Menu,
   Textfield,
 } from '../../components'
+import { API_LOCAL } from '../../services'
+import { login } from '../../services/auth'
 import { Content } from './styles'
 
 const Login = () => {
+  const navigate = useNavigate()
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault()
+    try {
+      const results = await axios.post(`${API_LOCAL}/login`, {
+        name,
+        password,
+      })
+      login(results.data.token)
+      navigate('/')
+    } catch (e) {
+      alert('Ops! Ocorreu um erro: ' + e?.response?.data?.message)
+    }
   }
 
   return (
